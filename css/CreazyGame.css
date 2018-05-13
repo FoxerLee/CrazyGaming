@@ -1,0 +1,432 @@
+#cont,
+body {
+    position: relative;
+    overflow: hidden
+}
+#effect,
+#username,
+.func {
+    position: absolute
+}
+#effect,
+#overlay {
+    width: 100%;
+    height: 100%
+}
+#cont,
+body,
+li {
+    overflow: hidden
+}
+body {
+    background: #000;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    font-family: 'Voltaire', sans-serif;
+}
+#cont,
+.leader {
+    margin: 0 auto
+}
+::-webkit-input-placeholder {
+    color: #222
+}
+::-moz-placeholder {
+    color: #222
+}
+#cont {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 5px;
+    border: 5px solid #444;
+    background: silver;
+    max-width: 900px;
+    max-height: 700px
+}
+#effect {
+    z-index: 100;
+    /*图像透明度*/
+    opacity: .4;
+    /*background: radial-gradient(#ff1, #000);*/
+    background-image: url(../img/background.png);
+    background-size: 100% 100%;
+}
+#username {
+    outline: 0;
+    border: none;
+    left: 5px;
+    top: 5px;
+    z-index: 99999;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 20px;
+    height: 28px;
+    font-weight: 700;
+    width: 220px
+}
+#username:focus {
+    border-bottom: 3px solid #FFF
+}
+.blurMe {
+    -moz-filter: grayscale(99%);
+    -ms-filter: grayscale(99%);
+    -o-filter: grayscale(99%);
+    -webkit-filter: grayscale(99%);
+    filter: grayscale(99%)
+}
+.func {
+    font-size: 80px;
+    top: -25px
+}
+.leftArrow,
+.rightArrow {
+    z-index: 10;
+    top: 40%;
+    font-size: 50px;
+    position: absolute
+}
+.lFunc {
+    left: -20px
+}
+.rFunc {
+    right: -20px
+}
+.leftArrow {
+    left: 1%
+}
+.rightArrow {
+    right: 1%
+}
+#overlay {
+    z-index: 50000;
+    position: absolute;
+    text-align: center
+}
+#bob,
+.head {
+    width: 20px;
+    position: absolute
+}
+.links:hover {
+    text-decoration: underline;
+    cursor: pointer
+}
+.right {
+    text-align: right;
+    z-index: 500000;
+    position: absolute;
+    right: 5px;
+    cursor: pointer
+}
+.bigText {
+    font-size: 40px
+}
+.bottomRight {
+    position: absolute;
+    right: 5px;
+    bottom: 5px
+}
+.bottomLeft {
+    position: absolute;
+    left: 5px;
+    bottom: 5px
+}
+
+#bob {
+    height: 31px;
+    z-index: 10;
+    background: url(../img/newhero.png);
+    /*transition: all .2s;*/
+    /*transform-origin: 50% 99%*/
+}
+
+#main {
+    left: 0;
+    position: absolute;
+    top: 0
+}
+
+#ghost {
+    display: none;
+    opacity: .3;
+    position: absolute
+}
+.head {
+    top: -3px;
+    background: gray;
+    height: 40px;
+    border-radius: 45%;
+    border: 1px solid #000
+}
+.body {
+    position: absolute;
+    top: -18px;
+    left: -22px
+}
+.comma {
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    position: absolute;
+    top: 12px;
+    left: -1px;
+    background: silver;
+    width: 21px;
+    height: 15px;
+    border-radius: 1px 1px 100% 0
+}
+.eye {
+    position: absolute;
+    top: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #000;
+    transition: left .3s;
+    animation: blink 4s infinite
+}
+#eyeLeft {
+    left: 7px
+}
+#eyeRight {
+    left: 23px
+}
+.brow {
+    position: absolute;
+    top: 0;
+    width: 15px;
+    height: 3px;
+    border: 1px solid #000;
+    background-color: #fff;
+    box-shadow: 0 3px 2px #000
+}
+#browLeft {
+    left: 0;
+    animation: Rexpress 6s infinite reverse
+}
+#browRight {
+    left: 23px;
+    animation: Rexpress 3s infinite
+}
+.cube {
+    position: absolute;
+    border-radius: 5px;
+    background: #e74c3c;
+    box-shadow: 1px 1px 0 #c0392b, 2px 2px 0 #c0392b, 3px 3px 0 #c0392b
+}
+.base {
+    position: absolute;
+    transform-origin: 50% 50%;
+    transition: all 1s
+}
+.Ltramp {
+    background: url(../img/Ltramp.png);
+    background-size: 32px 32px;
+}
+.Rtramp {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAQUlEQVR42mNggAJjY+P/yBgmzhAS+B/McXd3/4+OwQrSk/7/BymKjIzEihkqiv7/hynKysrCwIQVELSCoCMJeRMAP09uoS62OzIAAAAASUVORK5CYII=);
+    background-size: 40px 40px
+}
+.tramp {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAASUlEQVR42mNgAIKQwP//05P+/68ogmAQGyTGgAxgijAkjY2N/7u7u/+PjIwES4AwiA0SA8mhKMjKygJjKisAAVwKUHyBrgAmDgAynm6hgJh2RgAAAABJRU5ErkJggg==);
+    background-size: 40px 40px
+}
+.ice {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAAGFBMVEUAAAAAQCQATCQAhDMLdTMpK/9HQv9UVP+UT7l8AAAAAXRSTlMAQObYZgAAADBJREFUCNdjYE0LTWUocywzZxB3NndhEDQRd2YwFFJUZhAxVFFiEHE0UWBgFBBkAACRpAXbVGw7oQAAAABJRU5ErkJggg==);
+    background-size: 40px 40px
+}
+.finish {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAAAAABX3VL4AAAADklEQVQI12P4z8DA8B8ABgAB/8h3K8wAAAAASUVORK5CYII=);
+    background-size: 20px 20px
+}
+.wall {
+    background: url(../img/hinder.png);
+    background-size: 32px 32px
+}
+.floor {
+    background: url(../img/land.png);
+    background-size: 40px 40px
+}
+.note,
+li {
+    background-color: #fff
+}
+.success {
+    animation: success 4s 1 linear
+}
+.bounce {
+    animation: bounce .5s 1 linear
+}
+.grab {
+    animation: grab .5s 1 linear
+}
+.grabL {
+    animation: grabL .5s 1 linear
+}
+.walk {
+    animation: walk .4s infinite linear
+}
+.walkR {
+    animation: walk .4s infinite linear reverse
+}
+.flatten {
+    animation: flatten .15s 1 linear
+}
+@keyframes blink {
+    0%, 4% {
+        transform: scale(1)
+    }
+    2% {
+        transform: scale(2, .2)
+    }
+}
+@keyframes Rexpress {
+    0%, 80% {
+        transform: rotate(10deg)
+    }
+    2%,
+    40%,
+    84% {
+        transform: rotate(30deg)
+    }
+    41% {
+        transform: rotate(-10deg)
+    }
+    42% {
+        transform: rotate(-20deg)
+    }
+    44%,
+    79% {
+        transform: rotate(-30deg)
+    }
+    82% {
+        transform: rotate(20deg)
+    }
+}
+@keyframes flatten {
+    0% {
+        transform: scale(2, .7) translate(0, 30px)
+    }
+}
+@keyframes bounce {
+    0% {
+        transform: scale(2.7, .1)
+    }
+    25% {
+        transform: scale(1, 2)
+    }
+    90% {
+        transform: scale(1, 1.2)
+    }
+}
+@keyframes grab {
+    0% {
+        transform: skew(15deg, 0deg)
+    }
+}
+@keyframes grabL {
+    0% {
+        transform: skew(-15deg, 0deg)
+    }
+}
+@keyframes walk {
+    20% {
+        transform: rotate(-5deg)
+    }
+    50% {
+        transform: translate(0, -7px)
+    }
+    80% {
+        transform: rotate(5deg)
+    }
+}
+@keyframes success {
+    5% {
+        transform: translate(0, -7px) rotateY(100deg)
+    }
+    30% {
+        transform: translate(0, -24px) rotateY(-100deg)
+    }
+    55% {
+        transform: translate(0, -67px) rotateY(100deg)
+    }
+    60% {
+        transform: rotateY(-100deg) scale(1.1, .9)
+    }
+    70% {
+        transform: rotate(5deg)
+    }
+}
+.note {
+    z-index: 30;
+    transform: scale(0, 0);
+    position: absolute;
+    max-width: 200px;
+    color: #000;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 20px
+}
+.list_num,
+h2 {
+    font-size: 18px;
+    line-height: 10px
+}
+.ani {
+    animation: shimmy 1s ease-in-out
+}
+.tut {
+    animation: shimmy 4s ease-in-out
+}
+@keyframes shimmy {
+    3% {
+        transform: scale(1, 1)
+    }
+    95% {
+        transform: translate(0, 0)
+    }
+    100% {
+        transform: translate(0, 20px) scale(.05, .05) rotate(150deg)
+    }
+}
+.leader {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    width: 420px;
+    color: #000
+}
+.list_num,
+.number {
+    color: rgba(black, .65)
+}
+li {
+    border-radius: 5px;
+    height: 35px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 5px rgba(black, .1)
+}
+.list_num {
+    float: left;
+    margin: 15px 15px 15px 10px;
+    font-weight: 700;
+    width: 20px;
+    text-align: right
+}
+h2 {
+    display: block;
+    margin: 15px 0 0;
+    font-weight: 300;
+    padding-right: 20px
+}
+.number {
+    float: right;
+    font-weight: 700
+}

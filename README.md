@@ -1,17 +1,14 @@
 # CrazyGaming
-《Celeste》官网：http://www.celestegame.com/
 
-Steam链接：http://store.steampowered.com/app/504230/Celeste/
+![](img/background.png)
 
-一款十分不错的独立游戏，欢迎大家购买正版支持～
-
-最后放一张图激励自己:)
-
-![elest](img/Celeste.jpg)
-
-
+A pure hand-painted game — 《CrazyGaming》
 
 ### TODO
 
-- 确定框架
-- 开始写:)
+- [x] 基础版本
+- [ ] 模型、素材更换
+- [ ] 人物模型简化
+- [ ] 关卡设计
+
+### Thanks
