@@ -1,3 +1,5 @@
+/*导入一个牛逼的字体*/
+@import url("https://fonts.googleapis.com/css?family=Voltaire");
 #cont,
 body {
     position: relative;
@@ -19,17 +21,20 @@ li {
     overflow: hidden
 }
 body {
-    background: #000;
+    /*background: #000;*/
     margin: 0;
     padding: 0;
     color: #fff;
-    -ms-interpolation-mode: nearest-neighbor;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: -webkit-crisp-edges;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -o-crisp-edges;
-    image-rendering: pixelated;
-    font-family: 'Voltaire', sans-serif;
+    /*-ms-interpolation-mode: nearest-neighbor;*/
+    /*image-rendering: -webkit-optimize-contrast;*/
+    /*image-rendering: -webkit-crisp-edges;*/
+    /*image-rendering: -moz-crisp-edges;*/
+    /*image-rendering: -o-crisp-edges;*/
+    /*image-rendering: pixelated;*/
+    font-family: 'Voltaire';
+    text-transform: uppercase;
+    text-align: center;
+
 }
 #cont,
 .leader {
@@ -74,7 +79,7 @@ body {
 #username:focus {
     border-bottom: 3px solid #FFF
 }
-.blurMe {
+.miaoMe {
     -moz-filter: grayscale(99%);
     -ms-filter: grayscale(99%);
     -o-filter: grayscale(99%);
@@ -125,8 +130,12 @@ body {
     right: 5px;
     cursor: pointer
 }
+
 .bigText {
-    font-size: 40px
+    font-size: 50px;
+    font-family: 'Lobster';
+    text-transform: uppercase;
+    text-align: center;
 }
 .bottomRight {
     position: absolute;
