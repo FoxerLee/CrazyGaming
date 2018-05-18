@@ -1,5 +1,6 @@
 /*导入一个牛逼的字体*/
 @import url("https://fonts.googleapis.com/css?family=Voltaire");
+@import url("https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext");
 #cont,
 body {
     position: relative;
@@ -31,7 +32,7 @@ body {
     /*image-rendering: -moz-crisp-edges;*/
     /*image-rendering: -o-crisp-edges;*/
     /*image-rendering: pixelated;*/
-    font-family: 'Voltaire';
+    font-family: 'Voltaire', sans-serif;
     text-transform: uppercase;
     text-align: center;
 
@@ -80,9 +81,9 @@ body {
     border-bottom: 3px solid #FFF
 }
 .miaoMe {
-    -moz-filter: grayscale(99%);
-    -ms-filter: grayscale(99%);
-    -o-filter: grayscale(99%);
+    /*-moz-filter: grayscale(99%);*/
+    /*-ms-filter: grayscale(99%);*/
+    /*-o-filter: grayscale(99%);*/
     -webkit-filter: grayscale(99%);
     filter: grayscale(99%)
 }
@@ -133,7 +134,7 @@ body {
 
 .bigText {
     font-size: 50px;
-    font-family: 'Lobster';
+    font-family: 'Lobster', sans-serif;
     text-transform: uppercase;
     text-align: center;
 }
@@ -228,7 +229,7 @@ body {
     position: absolute;
     border-radius: 5px;
     background: #e74c3c;
-    box-shadow: 1px 1px 0 #c0392b, 2px 2px 0 #c0392b, 3px 3px 0 #c0392b
+    /*box-shadow: 1px 1px 0 #c0392b, 2px 2px 0 #c0392b, 3px 3px 0 #c0392b*/
 }
 .base {
     position: absolute;
@@ -240,20 +241,20 @@ body {
     background-size: 32px 32px;
 }
 .Rtramp {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAQUlEQVR42mNggAJjY+P/yBgmzhAS+B/McXd3/4+OwQrSk/7/BymKjIzEihkqiv7/hynKysrCwIQVELSCoCMJeRMAP09uoS62OzIAAAAASUVORK5CYII=);
+    background: url(../img/Rtramp.png);
     background-size: 40px 40px
 }
 .tramp {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAASUlEQVR42mNgAIKQwP//05P+/68ogmAQGyTGgAxgijAkjY2N/7u7u/+PjIwES4AwiA0SA8mhKMjKygJjKisAAVwKUHyBrgAmDgAynm6hgJh2RgAAAABJRU5ErkJggg==);
+    background: url(../img/tramp.png);
     background-size: 40px 40px
 }
 .ice {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAAGFBMVEUAAAAAQCQATCQAhDMLdTMpK/9HQv9UVP+UT7l8AAAAAXRSTlMAQObYZgAAADBJREFUCNdjYE0LTWUocywzZxB3NndhEDQRd2YwFFJUZhAxVFFiEHE0UWBgFBBkAACRpAXbVGw7oQAAAABJRU5ErkJggg==);
-    background-size: 40px 40px
+    background: url(../img/ice.png);
+    background-size: 48px 32px
 }
 .finish {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAAAAABX3VL4AAAADklEQVQI12P4z8DA8B8ABgAB/8h3K8wAAAAASUVORK5CYII=);
-    background-size: 20px 20px
+    background: url(../img/finish.png);
+    background-size: 32px 32px
 }
 .wall {
     background: url(../img/hinder.png);
