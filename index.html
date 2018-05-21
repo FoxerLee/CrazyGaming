@@ -1,13 +1,13 @@
 <!DOCTYPE html><html>
 <head>
 
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/sonantx.js"></script>
+    <script src="js/bin/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/bin/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bin/sonantx.js"></script>
     <script type="text/javascript" src="js/level.js"></script>
     <script type="text/javascript" src="js/block.js"></script>
     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css"> -->
     <link href="css/CreazyGame.css" rel="stylesheet">
 
 </head>
@@ -754,14 +754,14 @@
     }*/
     // $.glitchType = ['walk', 'grab', 'blink', 'flatten', 'bounce', 'Rexpress'];
 
-    $.tutorial = [
-        ["Stop all this glitch madness of JS13k!", "Quickly return me, a semicolon, to the braketed finish.", "The faster you are, the more notoriety you'll receive!", $.ios ? "Use the left half of the screen to move left or right" : "Left and right arrows make me move.", $.ios ? "Use the right half of the screen to jump" : "Space makes me jump and enter restarts me.", "Let's go! Time's a wasting up there!"], //level 0
-        ["This time we have bounce strips.", "Hurry! Jump on them and find the bracketed finish."],
-        ["Floating ground, hmm?", "I can't jump through these.", "And those blue ones look slippery."],
-        ["Padded walls?!? Do I look looney?", "Maybe I can climb them?"],
-        ["What's that red wall up there?", $.ios ? "Use the left half of the screen" : "Press left or right on the arrow keys,", "and I can slide on it."],
-        ["Sideways bouncy strips...", "Looks like a bouncy house.", "Let's see what these can do!"]
-    ];
+//    $.tutorial = [
+//        ["Stop all this glitch madness of JS13k!", "Quickly return me, a semicolon, to the braketed finish.", "The faster you are, the more notoriety you'll receive!", $.ios ? "Use the left half of the screen to move left or right" : "Left and right arrows make me move.", $.ios ? "Use the right half of the screen to jump" : "Space makes me jump and enter restarts me.", "Let's go! Time's a wasting up there!"], //level 0
+//        ["This time we have bounce strips.", "Hurry! Jump on them and find the bracketed finish."],
+//        ["Floating ground, hmm?", "I can't jump through these.", "And those blue ones look slippery."],
+//        ["Padded walls?!? Do I look looney?", "Maybe I can climb them?"],
+//        ["What's that red wall up there?", $.ios ? "Use the left half of the screen" : "Press left or right on the arrow keys,", "and I can slide on it."],
+//        ["Sideways bouncy strips...", "Looks like a bouncy house.", "Let's see what these can do!"]
+//    ];
 
     $.util = {};
 
@@ -842,7 +842,7 @@
         } else if (n > 0) {
             return Math.min(n, r);
         }
-    }
+    };
 
     $.util.popChat = function(_x, _y, _text, _c) {
 
@@ -1212,9 +1212,9 @@
             //////////////////////////////
 
             //start tutorial if needed////////////////
-            if ($.tutorial.length > l) {
-                $.util.popChat(window.innerWidth / 2, ($.H / 2.5) - 25, $.tutorial[l], 'tut');
-            }
+//            if ($.tutorial.length > l) {
+//                $.util.popChat(window.innerWidth / 2, ($.H / 2.5) - 25, $.tutorial[l], 'tut');
+//            }
             ///////////////////////////////////////
 
             ghost = new $.ghost(selecter.ghost(), $.myplayer.x, $.myplayer.y);
