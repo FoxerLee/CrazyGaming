@@ -14,37 +14,15 @@
 <body>
 
 <div id="cont">
-    <input id="username" placeholder="Enter a user name" type="text" name="username" onfocus="$.canEdit=true;" onblur="$.gameProgress.saveUser(this.value);$.canEdit=false;" onkeydown="if (event.keyCode == 13)
+    <input id="username" placeholder="Enter a user name" type="text" name="username" onfocus="$.canEdit=true;" onblur="$.gameProgress.saveUser(this.value);$.canEdit=false;" onkeydown="if (event.keyCode === 13)
                         {this.blur();}">
     <div id="game">
         <div id="blockContainer"></div>
         <div id="bob">
-            <!--<div class="head">-->
-                <!--<div id="eyeLeft" class="eye"></div>-->
-                <!--<div id="eyeRight" class="eye"></div>-->
-                <!--<div id="browLeft" class="brow"></div>-->
-                <!--<div id="browRight" class="brow"></div>-->
-            <!--</div>-->
-            <div id="bobody">
-                <div class="body">
-                    <!--<svg version="1.1" width="95" height="115" viewBox="-20 -70 85 130" xmlns="http://www.w3.org/2000/svg">-->
-                        <!--<path fill="#808080" stroke="#000000" stroke-width="1" d="M33,1.167v7.499C34.667,45.5,1.667,43.5,1.667,43.5l0.323-7.508C27,38.333,24,14.166,24,14.166H1.667L2,1.167H33z" />-->
-                    <!--</svg>-->
-                </div>
-            </div>
+            <div id="bobody"></div>
         </div>
         <div id="ghost">
-            <div class="head">
-                <div id="eyeLeft" class="eye"></div>
-                <div id="eyeRight" class="eye"></div>
-                <div id="browLeft" class="brow"></div>
-                <div id="browRight" class="brow"></div>
-            </div>
-            <div class="body">
-                <!--<svg version="1.1" width="95" height="115" viewBox="-20 -70 85 130" xmlns="http://www.w3.org/2000/svg">-->
-                    <!--&lt;!&ndash;<path fill="#808080" stroke="#000000" stroke-width="1" d="M33,1.167v7.499C34.667,45.5,1.667,43.5,1.667,43.5l0.323-7.508C27,38.333,24,14.166,24,14.166H1.667L2,1.167H33z" />&ndash;&gt;-->
-                <!--</svg>-->
-            </div>
+            <div class="body"></div>
         </div>
         <canvas id="main"></canvas>
         <div id="my-gui-container" class="right bigText"></div>
@@ -229,11 +207,11 @@
 
 
     $.loop = function() {
-        //  setTimeout(function () {
+
         window.requestAnimFrame($.loop);
         $.update();
         $.render();
-        //  }, 1000 / 60);
+
     };
 
     $.update = function() {
@@ -958,8 +936,8 @@
 
     $.player = function() {
         this.htmlOBJ = document.getElementById("bob");
-        this.eyelOBJ = document.getElementById("eyeLeft");
-        this.eyerOBJ = document.getElementById("eyeRight");
+//        this.eyelOBJ = document.getElementById("eyeLeft");
+//        this.eyerOBJ = document.getElementById("eyeRight");
         this.bodyOBJ = document.getElementById("bobody");
         this.x = 600;
         this.y = 710;
@@ -968,11 +946,11 @@
         this.velocityY = 0;
         this.velocityX = 0;
 
-        this.latMovement = 1; //5;
+        this.latMovement = 1;
 
         this.maxJumpHeight = 30;
-        this.w = 30;
-        this.h = 80;
+        this.w = 20;
+        this.h = 31;
         this.gravity = -15;
 
         this.lastJump = 0;
@@ -983,15 +961,15 @@
         this.status = true;
         this.htmlOBJ.style.left = $.W / 2 + "px";
         this.htmlOBJ.style.top = $.H / 2.5 + "px";
-    }
+    };
 
 
     $.player.prototype.reset = function() {
         this.weight = 1;
         this.velocityY = 0;
         this.velocityX = 0;
-        this.eyelOBJ.style.left = "7px";
-        this.eyerOBJ.style.left = "23px";
+//        this.eyelOBJ.style.left = "7px";
+//        this.eyerOBJ.style.left = "23px";
         this.htmlOBJ.style.transform = "rotate(0deg) rotateY(0deg)";
 
         this.status = true;
@@ -1080,7 +1058,8 @@
 
         if ($.key.left) {
             this.moveLeft();
-        } else if ($.key.right) {
+        }
+        else if ($.key.right) {
             this.moveRight();
         }
 
@@ -1102,29 +1081,32 @@
             }
         }
 
-        if (this.velocityY > this.gravity) { //-15 is limit of drop speed  && !collide.hit
+        // 设置的最大下落距离，为-15
+        if (this.velocityY > this.gravity) {
             this.velocityY -= this.weight;
 
         }
         if (this.lastVX !== this.velocityX.toFixed(1)) {
-            // mostly animating the character here//////
+            // 主要在这里实现移动
             if (this.velocityY >= 0 && this.velocityY <= 1) {
                 if (this.velocityX < 1.5 && this.velocityX > -1.5) {
-                    ///remove walk if not moving and not in the air
+                    // 速度过小，就停止移动
                     if (this.bodyOBJ.className.substring(0, 4) === "walk") {
                         this.bodyOBJ.className = ""
                     }
-                } else if (this.velocityX < 0) {
-                    //do walk left if moving and not in the air
+                }
+                else if (this.velocityX < -1.5) {
+                    // 向左移动
                     $.myplayer.addAnim('walk');
-                } else if (this.velocityX > 0) {
-                    //do walk right if moving and not in the air
+                }
+                else if (this.velocityX > 1.5) {
+                    // 向右移动
                     $.myplayer.addAnim('walkR');
                 }
             }
 
-            this.eyelOBJ.style.left = (7 + (this.velocityX.toFixed(2) / 2)) + "px";
-            this.eyerOBJ.style.left = (23 + (this.velocityX.toFixed(2) / 2)) + "px";
+//            this.eyelOBJ.style.left = (7 + (this.velocityX.toFixed(2) / 2)) + "px";
+//            this.eyerOBJ.style.left = (23 + (this.velocityX.toFixed(2) / 2)) + "px";
             this.htmlOBJ.style.transform = "rotate(" + $.util.range(this.velocityX.toFixed(1) * 2, 21) + "deg) rotateY(" + $.util.range(this.velocityX.toFixed(1) * 6, 40) + "deg)";
         }
         this.lastVX = this.velocityX.toFixed(1);
@@ -1301,7 +1283,7 @@
                     $.state.start(currentLevel);
                 }
             }
-        }
+        };
 
         this.render = function() {
             if (ghost) {

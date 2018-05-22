@@ -151,6 +151,16 @@ body {
 
 #bob {
     height: 31px;
+    width: 20px;
+    z-index: 10;
+    /*background: url(../img/newhero.png);*/
+    /*transition: all .2s;*/
+    /*transform-origin: 50% 99%*/
+}
+
+#bobody {
+    height: 31px;
+    width: 20px;
     z-index: 10;
     background: url(../img/newhero.png);
     /*transition: all .2s;*/
@@ -166,19 +176,21 @@ body {
 #ghost {
     display: none;
     opacity: .3;
-    position: absolute
+    position: absolute;
+    /*background: url(../img/newhero.png);*/
 }
-.head {
-    top: -3px;
-    background: gray;
-    height: 40px;
-    border-radius: 45%;
-    border: 1px solid #000
-}
+/*.head {*/
+    /*top: -3px;*/
+    /*background: gray;*/
+    /*height: 40px;*/
+    /*border-radius: 45%;*/
+    /*border: 1px solid #000;*/
+/*}*/
 .body {
     position: absolute;
-    top: -18px;
-    left: -22px
+    /*background: url(../img/newhero.png);*/
+    /*top: -18px;*/
+    /*left: -22px*/
 }
 .comma {
     border-color: #000;
