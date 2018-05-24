@@ -4,8 +4,11 @@
     <script src="js/bin/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="js/bin/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/bin/sonantx.js"></script>
+    <script type="text/javascript" src="js/bin/jquery.jplayer.min.js"></script>
     <script type="text/javascript" src="js/level.js"></script>
     <script type="text/javascript" src="js/block.js"></script>
+    <script type="text/javascript" src="js/listener.js"></script>
+    <script type="text/javascript" src="js/hero.js"></script>
     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css"> -->
     <link href="css/CreazyGame.css" rel="stylesheet">
@@ -29,6 +32,8 @@
     </div>
     <div id="overlay"></div>
     <div id="effect"></div>
+    <div id="jplayer_select"></div>
+    <div id="jplayer_play"></div>
 </div>
 </body>
 <script>
@@ -58,6 +63,36 @@
     // 定义屏幕长宽
     $.W = Math.min(window.innerWidth, 900);
     $.H = Math.min(window.innerHeight, 700);
+
+    // 背景音乐
+    var jplayer_select = $("#jplayer_select");
+    jplayer_select.jPlayer({
+
+        ready: function () {
+            $(this).jPlayer("setMedia", {
+                mp3:"./music/Start.mp3"
+            });
+        },
+        swfPath: "./js/bin",
+        supplied: "mp3"
+    });
+
+    var jplayer_play = $("#jplayer_play");
+    jplayer_play.jPlayer({
+        ready: function () {
+            $(this).jPlayer("setMedia", {
+                mp3:"./music/Final.mp3"
+            });
+        },
+        swfPath: "./js/bin",
+        supplied: "mp3"
+    });
+
+    // 循环播放
+    //jplayer_select.jPlayer("onSoundComplete", function() {
+        //alert('播放结束了');
+    //    this.element.jPlayer("play");
+    //});
 
 
     $.setup = function() {
@@ -128,75 +163,7 @@
     };
 
 
-    $.keydown = function(e) {
-        if (!$.canEdit) {
-            e.preventDefault()
-        }
-        if (e.keyCode === 37) {
-            $.key.left = 1;
-        }
-        if (e.keyCode === 39) {
-            $.key.right = 1;
-        }
-        if (e.keyCode === 32) {
-            $.key.space = 1;
-        } //32
-        if (e.keyCode === 13) {
-            $.key.enter = 1;
-        }
-    };
 
-    $.keyup = function(e) {
-
-        if (e.keyCode === 37) {
-            $.key.left = 0;
-        }
-        if (e.keyCode === 39) {
-            $.key.right = 0;
-        }
-        if (e.keyCode === 32) {
-            $.key.space = 0;
-        }
-        if (e.keyCode === 13) {
-            $.key.enter = 0;
-        }
-    };
-
-    $.touchstart = function(e) {
-        if (e.target.id === "overlay" || e.target.id === "body") {
-            e.preventDefault()
-        }
-        // var action = e.target.dataset.action;
-        //		if (action) {
-        var i = 0;
-        while (i < e.touches.length) {
-            p = e.touches[i];
-            if (p.clientX < window.innerWidth / 4) {
-                $.key.left = 1;
-            }
-            if (p.clientX > window.innerWidth - (window.innerWidth / 2)) {
-                $.key.space = 1;
-            }
-            if (p.clientX > window.innerWidth / 4 && p.clientX < 2 * (window.innerWidth / 4)) {
-                $.key.right = 1;
-            }
-            i++;
-        }
-
-    };
-
-    $.touchend = function(e) {
-        if (e.target.id === "overlay" || e.target.id === "body") {
-            e.preventDefault()
-        }
-        $.key.left = 0;
-        $.key.right = 0;
-        $.key.space = 0;
-    };
-
-    $.touchmove = function(e) {
-        e.preventDefault();
-    };
 
     $.updateDelta = function() {
         var now = Date.now();
@@ -262,474 +229,7 @@
         "lfo_waveform": 0
     };
 
-    /*
-    $.song = {
-        "rowLen": 6014,
-        "endPattern": 8,
-        "songData": [
-            {
-                "osc1_oct": 7,
-                "osc1_det": 0,
-                "osc1_detune": 0,
-                "osc1_xenv": 1,
-                "osc1_vol": 255,
-                "osc1_waveform": 0,
-                "osc2_oct": 7,
-                "osc2_det": 0,
-                "osc2_detune": 0,
-                "osc2_xenv": 1,
-                "osc2_vol": 255,
-                "osc2_waveform": 0,
-                "noise_fader": 0,
-                "env_attack": 50,
-                "env_sustain": 150,
-                "env_release": 4800,
-                "env_master": 200,
-                "fx_filter": 2,
-                "fx_freq": 600,
-                "fx_resonance": 254,
-                "fx_delay_time": 0,
-                "fx_delay_amt": 0,
-                "fx_pan_freq": 0,
-                "fx_pan_amt": 0,
-                "lfo_osc1_freq": 0,
-                "lfo_fx_freq": 0,
-                "lfo_freq": 0,
-                "lfo_amt": 0,
-                "lfo_waveform": 0,
-                "p": [
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
-                ],
-                "c": [
-                    {
-                        "n": [
-                            142,
-                            0,
-                            0,
-                            0,
-                            142,
-                            0,
-                            0,
-                            0,
-                            142,
-                            0,
-                            0,
-                            0,
-                            142,
-                            0,
-                            0,
-                            0,
-                            142,
-                            0,
-                            0,
-                            0,
-                            142,
-                            0,
-                            0,
-                            0,
-                            142,
-                            0,
-                            0,
-                            0,
-                            142,
-                            0,
-                            0,
-                            0
-                        ]
-                    }
-                ]
-            },
-            {
-                "osc1_oct": 8,
-                "osc1_det": 0,
-                "osc1_detune": 0,
-                "osc1_xenv": 0,
-                "osc1_vol": 0,
-                "osc1_waveform": 0,
-                "osc2_oct": 8,
-                "osc2_det": 0,
-                "osc2_detune": 0,
-                "osc2_xenv": 0,
-                "osc2_vol": 0,
-                "osc2_waveform": 0,
-                "noise_fader": 60,
-                "env_attack": 50,
-                "env_sustain": 419,
-                "env_release": 4607,
-                "env_master": 130,
-                "fx_filter": 1,
-                "fx_freq": 10332,
-                "fx_resonance": 120,
-                "fx_delay_time": 4,
-                "fx_delay_amt": 16,
-                "fx_pan_freq": 5,
-                "fx_pan_amt": 108,
-                "lfo_osc1_freq": 0,
-                "lfo_fx_freq": 0,
-                "lfo_freq": 5,
-                "lfo_amt": 187,
-                "lfo_waveform": 0,
-                "p": [
-                    0,
-                    0,
-                    0,
-                    3,
-                    3,
-                    3
-                ],
-                "c": [
-                    {
-                        "n": [
-                            165,
-                            164,
-                            164,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            50,
-                            75,
-                            72,
-                            68,
-                            68,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
-                        ]
-                    },
-                    {
-                        "n": [
-                            165,
-                            164,
-                            164,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            56,
-                            65,
-                            65,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
-                        ]
-                    },
-                    {
-                        "n": [
-                            125,
-                            0,
-                            0,
-                            0,
-                            116,
-                            0,
-                            0,
-                            0,
-                            106,
-                            0,
-                            0,
-                            0,
-                            125,
-                            0,
-                            0,
-                            0,
-                            116,
-                            0,
-                            0,
-                            0,
-                            106,
-                            0,
-                            0,
-                            0,
-                            125,
-                            0,
-                            0,
-                            0,
-                            116,
-                            0,
-                            0,
-                            0
-                        ]
-                    }
-                ]
-            },
-            {
-                "osc1_oct": 6,
-                "osc1_det": 0,
-                "osc1_detune": 0,
-                "osc1_xenv": 1,
-                "osc1_vol": 255,
-                "osc1_waveform": 0,
-                "osc2_oct": 6,
-                "osc2_det": 0,
-                "osc2_detune": 0,
-                "osc2_xenv": 1,
-                "osc2_vol": 255,
-                "osc2_waveform": 0,
-                "noise_fader": 14,
-                "env_attack": 50,
-                "env_sustain": 150,
-                "env_release": 8181,
-                "env_master": 161,
-                "fx_filter": 2,
-                "fx_freq": 5900,
-                "fx_resonance": 240,
-                "fx_delay_time": 6,
-                "fx_delay_amt": 66,
-                "fx_pan_freq": 0,
-                "fx_pan_amt": 0,
-                "lfo_osc1_freq": 0,
-                "lfo_fx_freq": 0,
-                "lfo_freq": 0,
-                "lfo_amt": 0,
-                "lfo_waveform": 0,
-                "p": [
-                    0,
-                    0,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
-                ],
-                "c": [
-                    {
-                        "n": [
-                            135,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            151,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            116,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            151,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0
-                        ]
-                    }
-                ]
-            },
-            {
-                "osc1_oct": 8,
-                "osc1_det": 0,
-                "osc1_detune": 0,
-                "osc1_xenv": 0,
-                "osc1_vol": 0,
-                "osc1_waveform": 0,
-                "osc2_oct": 8,
-                "osc2_det": 0,
-                "osc2_detune": 0,
-                "osc2_xenv": 0,
-                "osc2_vol": 0,
-                "osc2_waveform": 0,
-                "noise_fader": 60,
-                "env_attack": 50,
-                "env_sustain": 419,
-                "env_release": 4607,
-                "env_master": 130,
-                "fx_filter": 1,
-                "fx_freq": 10332,
-                "fx_resonance": 120,
-                "fx_delay_time": 4,
-                "fx_delay_amt": 16,
-                "fx_pan_freq": 5,
-                "fx_pan_amt": 108,
-                "lfo_osc1_freq": 0,
-                "lfo_fx_freq": 0,
-                "lfo_freq": 5,
-                "lfo_amt": 187,
-                "lfo_waveform": 0,
-                "p": [
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
-                ],
-                "c": [
-                    {
-                        "n": [
-                            0,
-                            0,
-                            130,
-                            0,
-                            0,
-                            0,
-                            130,
-                            0,
-                            0,
-                            0,
-                            130,
-                            0,
-                            0,
-                            0,
-                            130,
-                            0,
-                            0,
-                            0,
-                            130,
-                            0,
-                            0,
-                            0,
-                            130,
-                            0,
-                            0,
-                            0,
-                            130,
-                            0,
-                            0,
-                            0,
-                            130,
-                            0
-                        ]
-                    }
-                ]
-            },
-            {
-                "osc1_oct": 8,
-                "osc1_det": 0,
-                "osc1_detune": 0,
-                "osc1_xenv": 1,
-                "osc1_vol": 221,
-                "osc1_waveform": 0,
-                "osc2_oct": 8,
-                "osc2_det": 0,
-                "osc2_detune": 0,
-                "osc2_xenv": 1,
-                "osc2_vol": 210,
-                "osc2_waveform": 0,
-                "noise_fader": 33,
-                "env_attack": 50,
-                "env_sustain": 150,
-                "env_release": 15454,
-                "env_master": 196,
-                "fx_filter": 3,
-                "fx_freq": 11024,
-                "fx_resonance": 240,
-                "fx_delay_time": 6,
-                "fx_delay_amt": 24,
-                "fx_pan_freq": 0,
-                "fx_pan_amt": 20,
-                "lfo_osc1_freq": 0,
-                "lfo_fx_freq": 1,
-                "lfo_freq": 7,
-                "lfo_amt": 64,
-                "lfo_waveform": 0,
-                "p": [
-                    1,
-                    0,
-                    1,
-                    0,
-                    0,
-                    1
-                ],
-                "c": [
-                    {
-                        "n": [
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            149,
-                            147,
-                            147,
-                            147,
-                            147
-                        ]
-                    }
-                ]
-            }
-        ],
-        "songLen": 37
-    }*/
+
     // $.glitchType = ['walk', 'grab', 'blink', 'flatten', 'bounce', 'Rexpress'];
 
 //    $.tutorial = [
@@ -856,51 +356,7 @@
         }
     };
 
-    $.block = function(opt) {
-        for (var e in $.blockBehaviors[$.blocks[opt.t].id]) {
-            this[e] = $.blockBehaviors[$.blocks[opt.t].id][e];
-        }
-        for (var e in opt) { //level defs will over right defaults in block behaviors
-            this[e] = opt[e];
-        }
 
-        this.add = this.add || function() {};
-        this.style = this.style || "cube";
-        this.init = this.init || function() {};
-        this.x = this.x || 100;
-        this.y = this.y || 100;
-
-        this.w = this.w || 160;
-        this.h = this.h || 40;
-
-        var htmlOBJ = document.createElement('div');
-        var container = document.getElementById('blockContainer');
-
-        var status = true;
-        htmlOBJ.className = this.style;
-
-        this.init();
-        htmlOBJ.style.width = this.w + 'px';
-        htmlOBJ.style.height = this.h + 'px';
-        if (opt.t === 4) {
-            htmlOBJ.innerHTML = "<div class='func lFunc'>{</div><div class='func rFunc'>}</div>";
-        }
-        container.appendChild(htmlOBJ);
-
-
-        this.transition = function() {
-            htmlOBJ.style.transition = "all 0s";
-        };
-
-        this.kill = function() {
-            container.removeChild(htmlOBJ);
-        };
-
-        this.render = function() {
-
-            htmlOBJ.style.transform = "translate(" + ($.offset.x + this.x) + "px," + ($.offset.y + this.y) + "px)";
-        }
-    };
 
     $.ghost = function(_p, _x, _y) {
         var htmlOBJ = document.getElementById("ghost");
@@ -934,186 +390,7 @@
         }
     };
 
-    $.player = function() {
-        this.htmlOBJ = document.getElementById("bob");
-//        this.eyelOBJ = document.getElementById("eyeLeft");
-//        this.eyerOBJ = document.getElementById("eyeRight");
-        this.bodyOBJ = document.getElementById("bobody");
-        this.x = 600;
-        this.y = 710;
-        this.weight = 1;
 
-        this.velocityY = 0;
-        this.velocityX = 0;
-
-        this.latMovement = 1;
-
-        this.maxJumpHeight = 30;
-        this.w = 20;
-        this.h = 31;
-        this.gravity = -15;
-
-        this.lastJump = 0;
-        this.currjump = 0;
-
-        this.lastVX = 0;
-
-        this.status = true;
-        this.htmlOBJ.style.left = $.W / 2 + "px";
-        this.htmlOBJ.style.top = $.H / 2.5 + "px";
-    };
-
-
-    $.player.prototype.reset = function() {
-        this.weight = 1;
-        this.velocityY = 0;
-        this.velocityX = 0;
-//        this.eyelOBJ.style.left = "7px";
-//        this.eyerOBJ.style.left = "23px";
-        this.htmlOBJ.style.transform = "rotate(0deg) rotateY(0deg)";
-
-        this.status = true;
-    };
-
-    $.player.prototype.jump = function() {
-        this.velocityY = this.maxJumpHeight;
-        $.playSound($.sounds['jump']);
-    };
-
-    $.player.prototype.moveLeft = function() {
-        if (this.velocityX > -7) {
-            this.velocityX -= this.latMovement;
-        }
-    };
-
-
-    $.player.prototype.moveRight = function() {
-        if (this.velocityX < 7) {
-            this.velocityX += this.latMovement;
-        }
-
-    };
-
-    $.player.prototype.checkCollision = function(objs) {
-        var _objs = [];
-        var i = objs.length;
-        while (i--) {
-            if ($.util.rectInRect(this, objs[i])) {
-                _objs.push({
-                    hit: true,
-                    e: objs[i]
-                });
-            }
-        }
-        return _objs;
-    };
-
-    $.player.prototype.addAnim = function(type) {
-        if (type && type !== "success") {
-            if (type.substring(0, 4) === "walk" && this.bodyOBJ.className === type) {
-                return;
-            }
-            this.bodyOBJ.className = "";
-            void this.bodyOBJ.offsetWidth;
-            if (type) {
-                this.bodyOBJ.classList.add(type)
-            }
-        }
-        else {
-            this.htmlOBJ.className = "";
-            void this.htmlOBJ.offsetWidth;
-            if (type) {
-                this.htmlOBJ.classList.add(type)
-            }
-        }
-
-    };
-
-    $.player.prototype.success = function() {
-        this.status = false;
-        this.addAnim('success');
-        $.state.nextLevel();
-        $.util.popChat(window.innerWidth / 2, ($.H / 2.5) - 25, ["BOOOOOYAH!!!!"]);
-
-        this.htmlOBJ.addEventListener("animationend", AnimationEnded, false);
-
-        function AnimationEnded(e) {
-            if (e.animationName === "success") {
-                //  $.state.destroy();
-                $.state.showSelecter();
-                e.currentTarget.removeEventListener("animationend", AnimationEnded, false);
-            }
-
-        }
-    };
-
-    $.player.prototype.update = function(objs) {
-        if (!this.status) {
-            return
-        }
-
-        this.lastJump = this.currjump;
-        this.currjump = $.key.space;
-        var doJump = !!(this.lastJump === 0 & this.currjump === 1);
-
-        if ($.key.left) {
-            this.moveLeft();
-        }
-        else if ($.key.right) {
-            this.moveRight();
-        }
-
-
-        var collide = this.checkCollision(objs);
-
-        var i = collide.length;
-        while (i--) {
-            if (collide[i].hit) {
-
-                collide[i].e.ontouch();
-                if (doJump) {
-                    this.jump();
-                    this.addAnim('bounce');
-                    collide[i].e.add();
-                }
-
-
-            }
-        }
-
-        // 设置的最大下落距离，为-15
-        if (this.velocityY > this.gravity) {
-            this.velocityY -= this.weight;
-
-        }
-        if (this.lastVX !== this.velocityX.toFixed(1)) {
-            // 主要在这里实现移动
-            if (this.velocityY >= 0 && this.velocityY <= 1) {
-                if (this.velocityX < 1.5 && this.velocityX > -1.5) {
-                    // 速度过小，就停止移动
-                    if (this.bodyOBJ.className.substring(0, 4) === "walk") {
-                        this.bodyOBJ.className = ""
-                    }
-                }
-                else if (this.velocityX < -1.5) {
-                    // 向左移动
-                    $.myplayer.addAnim('walk');
-                }
-                else if (this.velocityX > 1.5) {
-                    // 向右移动
-                    $.myplayer.addAnim('walkR');
-                }
-            }
-
-//            this.eyelOBJ.style.left = (7 + (this.velocityX.toFixed(2) / 2)) + "px";
-//            this.eyerOBJ.style.left = (23 + (this.velocityX.toFixed(2) / 2)) + "px";
-            this.htmlOBJ.style.transform = "rotate(" + $.util.range(this.velocityX.toFixed(1) * 2, 21) + "deg) rotateY(" + $.util.range(this.velocityX.toFixed(1) * 6, 40) + "deg)";
-        }
-        this.lastVX = this.velocityX.toFixed(1);
-        ///////////////////////////////////////////////////
-        this.y -= this.velocityY;
-        this.x += this.velocityX;
-    };
 
     $.play = function(l) {
         var customContainer = document.getElementById('my-gui-container');
@@ -1167,19 +444,19 @@
         };
 
         this.start = function(l) {
+
+            jplayer_select.jPlayer("stop");
+            jplayer_play.jPlayer("play");
+
             for (var i = 0; i < blocks.length; i++) {
                 blocks[i].transition();
-
             }
             $.elapsed = 0;
             currFrame = 0;
 
             status = true;
 
-            // song = $.playSound($.songs['a'], true);
 
-            // build play menu
-            // if (song) { song.stop(); }
             customContainer.innerHTML = "";
             var pause = document.createElement('div');
             pause.innerText = "||";
@@ -1189,15 +466,11 @@
                 status = false;
                 customContainer.innerHTML = "";
                 $.state.showSelecter();
+                jplayer_select.jPlayer("play");
+                jplayer_play.jPlayer("stop");
             });
             customContainer.appendChild(pause);
-            //////////////////////////////
 
-            //start tutorial if needed////////////////
-//            if ($.tutorial.length > l) {
-//                $.util.popChat(window.innerWidth / 2, ($.H / 2.5) - 25, $.tutorial[l], 'tut');
-//            }
-            ///////////////////////////////////////
 
             ghost = new $.ghost(selecter.ghost(), $.myplayer.x, $.myplayer.y);
 
@@ -1304,6 +577,8 @@
 
     // 初始化界面，
     $.select = function(_l) {
+        jplayer_select.jPlayer("play");
+
         document.getElementById('game').classList.add("miaoMe");
 
         var customContainer = document.getElementById('overlay');
