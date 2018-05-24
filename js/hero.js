@@ -104,6 +104,8 @@ $.player.prototype.success = function() {
     function AnimationEnded(e) {
         if (e.animationName === "success") {
             //  $.state.destroy();
+            jplayer_select.jPlayer("play");
+            jplayer_play.jPlayer("stop");
             $.state.showSelecter();
             e.currentTarget.removeEventListener("animationend", AnimationEnded, false);
         }
